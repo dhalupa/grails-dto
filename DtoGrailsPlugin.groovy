@@ -6,7 +6,7 @@ import org.springframework.context.ApplicationContext
 
 class DtoGrailsPlugin {
     // the plugin version
-    def version = "0.2.4"
+    def version = "0.2.4-PK"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.1 > *"
     // the other plugins this plugin depends on
@@ -106,16 +106,20 @@ map domain class instances to DTO instances.
             }
         }
 
-        // Then the toDTO() method.
-        mc.toDTO = {->
-            return mapDomainInstance(ctx, delegate)
-        }
+        // Then the toDTO() method if not already defined
+	if (mc.getMetaMethod('toDTO', [] as Object[]) == null) {
+            mc.toDTO = {->
+                return mapDomainInstance(ctx, delegate)
+            }
+	}
 
-        mc.toDTO = { Class clazz ->
-            // Convert the domain instance to a DTO.
-            def mapper = ctx.getBean("dozerMapper")
-            return mapper.map(delegate, clazz)
-        }
+	if (mc.getMetaMethod('toDTO', [Class] as Object[]) == null) {
+            mc.toDTO = { Class clazz ->
+                // Convert the domain instance to a DTO.
+                def mapper = ctx.getBean("dozerMapper")
+                return mapper.map(delegate, clazz)
+            }
+	}
     }
 
     /**
