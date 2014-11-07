@@ -7,3 +7,6 @@ stacktrace.log
 target/
 tmp/
 unzipped/
+*.iml
+.idea/
+*~
