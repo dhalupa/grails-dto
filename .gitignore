@@ -10,3 +10,6 @@ unzipped/
 *.iml
 .idea/
 *~
+build/
+out/
+
