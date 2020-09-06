@@ -1,6 +1,6 @@
 package org.codehaus.groovy.grails.plugins.dto
 
-import org.codehaus.groovy.grails.commons.GrailsDomainClass
+import grails.core.GrailsDomainClass
 
 /**
  * Default implementation of the DTO generator. It inspects the domain
