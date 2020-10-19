@@ -13,4 +13,6 @@ unzipped/
 build/
 out/
 .gradle
-
+.project
+.classpath
+bin/
